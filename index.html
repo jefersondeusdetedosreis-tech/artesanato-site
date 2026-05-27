@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ateliê com Amor — Artesanato Exclusivo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose:      #e8a4a8;
+      --rose-lt:   #fbe8ea;
+      --cream:     #fdf6f0;
+      --gold:      #c9a04a;
+      --gold-lt:   #f0e0b8;
+      --brown:     #5a4a42;
+      --brown-lt:  #8a7068;
+      --white:     #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      color: var(--brown);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 6%;
+      background: rgba(253,246,240,.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--gold-lt);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; color: var(--brown);
+      letter-spacing: .04em;
+    }
+    .nav-logo span { color: var(--gold); }
+    nav ul { list-style: none; display: flex; gap: 32px; }
+    nav ul a {
+      text-decoration: none; color: var(--brown-lt);
+      font-size: .88rem; letter-spacing: .08em; text-transform: uppercase;
+      transition: color .25s;
+    }
+    nav ul a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--rose); color: var(--white) !important;
+      padding: 8px 20px; border-radius: 50px;
+      transition: background .25s, transform .2s !important;
+    }
+    .nav-cta:hover { background: var(--brown) !important; transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+      padding: 100px 6% 60px;
+      background:
+        radial-gradient(ellipse at 80% 20%, #fbe8ea 0%, transparent 55%),
+        radial-gradient(ellipse at 10% 80%, #f0e0b8 0%, transparent 50%),
+        var(--cream);
+      gap: 60px;
+    }
+    .hero-text { max-width: 520px; }
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold-lt); color: var(--gold);
+      font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 50px; margin-bottom: 20px;
+    }
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      line-height: 1.2; color: var(--brown);
+      margin-bottom: 20px;
+    }
+    .hero-text h1 em { color: var(--rose); font-style: italic; }
+    .hero-text p {
+      font-size: 1.05rem; line-height: 1.75;
+      color: var(--brown-lt); margin-bottom: 36px;
+    }
+    .btn-group { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold); color: var(--white);
+      padding: 14px 32px; border-radius: 50px;
+      text-decoration: none; font-weight: 700; font-size: .92rem;
+      letter-spacing: .04em; transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(201,160,74,.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,160,74,.45); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--brown);
+      padding: 14px 28px; border-radius: 50px; border: 1.5px solid var(--rose);
+      text-decoration: none; font-size: .92rem; letter-spacing: .04em;
+      transition: background .2s, color .2s;
+    }
+    .btn-secondary:hover { background: var(--rose); color: var(--white); }
+
+    .hero-images {
+      display: grid; grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto; gap: 14px;
+    }
+    .hero-img-main {
+      grid-column: 1 / -1;
+      border-radius: 24px; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(90,74,66,.18);
+      height: 300px;
+    }
+    .hero-img-main img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-img-sm {
+      border-radius: 18px; overflow: hidden;
+      box-shadow: 0 10px 30px rgba(90,74,66,.14);
+      height: 180px;
+    }
+    .hero-img-sm img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ── SECTION HEADER ── */
+    .section-header { text-align: center; margin-bottom: 52px; }
+    .section-tag {
+      display: inline-block;
+      background: var(--rose-lt); color: var(--rose);
+      font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      padding: 5px 16px; border-radius: 50px; margin-bottom: 14px;
+    }
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--brown);
+      margin-bottom: 14px;
+    }
+    .section-header p { color: var(--brown-lt); font-size: 1rem; max-width: 500px; margin: 0 auto; }
+    .divider {
+      width: 60px; height: 3px; background: var(--gold);
+      border-radius: 2px; margin: 18px auto 0;
+    }
+
+    /* ── FEATURES ── */
+    #diferenciais {
+      padding: 80px 6%;
+      background: var(--white);
+    }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px;
+    }
+    .feature-card {
+      text-align: center; padding: 40px 28px;
+      border-radius: 20px; background: var(--cream);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .feature-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(90,74,66,.12); }
+    .feature-icon {
+      font-size: 2.4rem; margin-bottom: 18px;
+      display: block;
+    }
+    .feature-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; color: var(--brown); margin-bottom: 10px;
+    }
+    .feature-card p { font-size: .9rem; color: var(--brown-lt); line-height: 1.65; }
+
+    /* ── PRODUTOS ── */
+    #produtos {
+      padding: 80px 6%;
+      background:
+        radial-gradient(ellipse at 0% 50%, #fbe8ea 0%, transparent 45%),
+        var(--cream);
+    }
+    .products-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 28px;
+    }
+    .product-card {
+      background: var(--white); border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(90,74,66,.08);
+      transition: transform .3s, box-shadow .3s;
+      display: flex; flex-direction: column;
+    }
+    .product-card:hover { transform: translateY(-8px); box-shadow: 0 18px 50px rgba(90,74,66,.16); }
+    .product-img {
+      position: relative; height: 280px; overflow: hidden;
+    }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .product-card:hover .product-img img { transform: scale(1.06); }
+    .product-badge {
+      position: absolute; top: 14px; left: 14px;
+      background: var(--gold); color: var(--white);
+      font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 50px;
+    }
+    .product-body { padding: 22px 24px 24px; flex: 1; display: flex; flex-direction: column; }
+    .product-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.12rem; color: var(--brown); margin-bottom: 8px;
+    }
+    .product-body p { font-size: .88rem; color: var(--brown-lt); line-height: 1.65; flex: 1; }
+    .product-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--rose-lt);
+    }
+    .product-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem; color: var(--gold); font-weight: 600;
+    }
+    .product-price small { font-size: .72rem; color: var(--brown-lt); font-family: 'Lato', sans-serif; display: block; }
+    .btn-whatsapp {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: #25D366; color: var(--white);
+      padding: 10px 18px; border-radius: 50px;
+      text-decoration: none; font-size: .82rem; font-weight: 700;
+      transition: background .2s, transform .2s;
+    }
+    .btn-whatsapp:hover { background: #1da851; transform: scale(1.04); }
+    .btn-whatsapp svg { width: 16px; height: 16px; fill: currentColor; }
+
+    /* ── GALERIA ── */
+    #galeria {
+      padding: 80px 6%;
+      background: var(--white);
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 240px 240px;
+      gap: 14px;
+    }
+    .gallery-item {
+      border-radius: 18px; overflow: hidden;
+      box-shadow: 0 6px 24px rgba(90,74,66,.1);
+      cursor: pointer;
+    }
+    .gallery-item:first-child { grid-row: 1 / 3; }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .45s;
+    }
+    .gallery-item:hover img { transform: scale(1.08); }
+
+    /* ── DEPOIMENTOS ── */
+    #depoimentos {
+      padding: 80px 6%;
+      background:
+        radial-gradient(ellipse at 100% 0%, #f0e0b8 0%, transparent 40%),
+        var(--cream);
+    }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .testimonial-card {
+      background: var(--white); border-radius: 20px;
+      padding: 32px 28px;
+      box-shadow: 0 4px 20px rgba(90,74,66,.07);
+      border-top: 3px solid var(--rose);
+    }
+    .stars { color: var(--gold); font-size: 1rem; margin-bottom: 16px; letter-spacing: 2px; }
+    .testimonial-card blockquote {
+      font-size: .95rem; line-height: 1.75;
+      color: var(--brown-lt); margin-bottom: 20px; font-style: italic;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .author-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--rose-lt); display: flex; align-items: center;
+      justify-content: center; font-size: 1.2rem;
+    }
+    .author-name { font-weight: 700; font-size: .9rem; color: var(--brown); }
+    .author-city { font-size: .78rem; color: var(--brown-lt); }
+
+    /* ── CONTATO / CTA ── */
+    #contato {
+      padding: 80px 6%;
+      background: var(--brown);
+      color: var(--white);
+      text-align: center;
+    }
+    #contato .section-tag { background: rgba(255,255,255,.1); color: var(--gold-lt); }
+    #contato h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--white); margin-bottom: 16px;
+    }
+    #contato p { color: rgba(255,255,255,.72); font-size: 1rem; max-width: 480px; margin: 0 auto 40px; line-height: 1.8; }
+    .cta-btn-big {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: #25D366; color: var(--white);
+      padding: 18px 44px; border-radius: 50px;
+      text-decoration: none; font-size: 1.05rem; font-weight: 700;
+      box-shadow: 0 6px 30px rgba(37,211,102,.4);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .cta-btn-big:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(37,211,102,.5); }
+    .cta-btn-big svg { width: 22px; height: 22px; fill: currentColor; }
+    .contact-info {
+      display: flex; justify-content: center; gap: 48px;
+      margin-top: 52px; flex-wrap: wrap;
+    }
+    .contact-item { text-align: center; }
+    .contact-item .ci-icon { font-size: 1.6rem; margin-bottom: 8px; display: block; }
+    .contact-item span { font-size: .88rem; color: rgba(255,255,255,.6); display: block; }
+    .contact-item strong { color: var(--white); font-size: .98rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #3d2e28;
+      padding: 28px 6%; text-align: center;
+      color: rgba(255,255,255,.45); font-size: .82rem;
+    }
+    footer a { color: var(--gold-lt); text-decoration: none; }
+
+    /* ── WHATSAPP FAB ── */
+    .wa-fab {
+      position: fixed; bottom: 30px; right: 30px; z-index: 999;
+      width: 60px; height: 60px; border-radius: 50%;
+      background: #25D366; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,.45);
+      text-decoration: none; transition: transform .2s, box-shadow .2s;
+      animation: pulse-wa 2.5s infinite;
+    }
+    .wa-fab:hover { transform: scale(1.12); box-shadow: 0 10px 36px rgba(37,211,102,.6); animation: none; }
+    .wa-fab svg { width: 28px; height: 28px; fill: #fff; }
+    @keyframes pulse-wa {
+      0%, 100% { box-shadow: 0 6px 24px rgba(37,211,102,.45); }
+      50%       { box-shadow: 0 6px 36px rgba(37,211,102,.75); }
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 500;
+      background: rgba(30,20,18,.9); align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 85vh; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+    .lightbox-close {
+      position: absolute; top: 20px; right: 28px;
+      color: #fff; font-size: 2.4rem; cursor: pointer; line-height: 1;
+      background: none; border: none; opacity: .7; transition: opacity .2s;
+    }
+    .lightbox-close:hover { opacity: 1; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      #hero { grid-template-columns: 1fr; padding-top: 90px; }
+      .hero-images { display: none; }
+      nav ul { display: none; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gallery-item:first-child { grid-row: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo">Ateliê <span>com Amor</span></div>
+  <ul>
+    <li><a href="#produtos">Produtos</a></li>
+    <li><a href="#galeria">Galeria</a></li>
+    <li><a href="#depoimentos">Depoimentos</a></li>
+    <li><a href="#contato" class="nav-cta">Encomendar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-text">
+    <div class="hero-badge">✦ Feito à mão com amor</div>
+    <h1>Álbuns &amp; Memórias<br /><em>únicas para sempre</em></h1>
+    <p>Cada peça é criada com carinho, papel especial e muito afeto. Presenteie quem você ama com algo verdadeiramente exclusivo.</p>
+    <div class="btn-group">
+      <a href="#produtos" class="btn-primary">✦ Ver coleção</a>
+      <a href="#contato" class="btn-secondary">Encomendar agora</a>
+    </div>
+  </div>
+  <div class="hero-images">
+    <div class="hero-img-main">
+      <img src="images/produto-5.jpg" alt="Álbum artesanal rosa" />
+    </div>
+    <div class="hero-img-sm">
+      <img src="images/produto-1.jpg" alt="Álbum Pequeno Príncipe" />
+    </div>
+    <div class="hero-img-sm">
+      <img src="images/produto-4.jpg" alt="Caixa decorada" />
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section id="diferenciais">
+  <div class="section-header">
+    <div class="section-tag">Por que nos escolher</div>
+    <h2>Feito com dedicação</h2>
+    <p>Cada detalhe é pensado para que sua peça seja única e especial.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <span class="feature-icon">🎨</span>
+      <h3>100% Artesanal</h3>
+      <p>Cada álbum é feito à mão, com materiais de alta qualidade selecionados com cuidado.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">✨</span>
+      <h3>Personalizado</h3>
+      <p>Criamos peças exclusivas com o tema, cores e detalhes que você escolher.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">💝</span>
+      <h3>Presente Especial</h3>
+      <p>Ideal para maternidade, aniversários, casamentos e momentos inesquecíveis.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🚚</span>
+      <h3>Envio para todo Brasil</h3>
+      <p>Embalamos com muito cuidado e enviamos para qualquer cidade do país.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUTOS -->
+<section id="produtos">
+  <div class="section-header">
+    <div class="section-tag">Nossa coleção</div>
+    <h2>Peças em destaque</h2>
+    <p>Álbuns artesanais únicos, criados com amor para guardar suas memórias mais preciosas.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="product-img">
+        <img src="images/produto-1.jpg" alt="Álbum Pequeno Príncipe" />
+        <div class="product-badge">Exclusivo</div>
+      </div>
+      <div class="product-body">
+        <h3>Álbum Pequeno Príncipe</h3>
+        <p>Álbum espiral temático com capa cartonada, apliques 3D e detalhes dourados. Perfeito para chá de bebê ou maternidade.</p>
+        <div class="product-footer">
+          <div class="product-price">
+            <small>a partir de</small>
+            R$ 189,00
+          </div>
+          <a href="https://wa.me/5500000000000?text=Olá!%20Tenho%20interesse%20no%20Álbum%20Pequeno%20Príncipe%20🌟" target="_blank" class="btn-whatsapp">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Pedir
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <img src="images/produto-2.jpg" alt="Álbum Rosa com Ursinha" />
+        <div class="product-badge">Mais vendido</div>
+      </div>
+      <div class="product-body">
+        <h3>Álbum Rosa com Ursinha</h3>
+        <p>Álbum com capa de tecido rosa, bordinha de pompom, apliques florais e ursinha delicada. Ideal para bebê menina.</p>
+        <div class="product-footer">
+          <div class="product-price">
+            <small>a partir de</small>
+            R$ 219,00
+          </div>
+          <a href="https://wa.me/5500000000000?text=Olá!%20Tenho%20interesse%20no%20Álbum%20Rosa%20com%20Ursinha%20🐻🌸" target="_blank" class="btn-whatsapp">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Pedir
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <img src="images/produto-5.jpg" alt="Álbum Xadrez Rosa" />
+      </div>
+      <div class="product-body">
+        <h3>Álbum Xadrez Rosa</h3>
+        <p>Capa em papel xadrez rose com ursinha flores e borboleta 3D, detalhes pérola e laço. Um presente que encanta.</p>
+        <div class="product-footer">
+          <div class="product-price">
+            <small>a partir de</small>
+            R$ 249,00
+          </div>
+          <a href="https://wa.me/5500000000000?text=Olá!%20Tenho%20interesse%20no%20Álbum%20Xadrez%20Rosa%20🎀" target="_blank" class="btn-whatsapp">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Pedir
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <img src="images/produto-4.jpg" alt="Caixa Decorada Xadrez" />
+        <div class="product-badge">Novo</div>
+      </div>
+      <div class="product-body">
+        <h3>Caixa Decorada Xadrez</h3>
+        <p>Caixa artesanal decorada com ursinha, peônias e flores delicadas. Para guardar memórias ou oferecer como presente.</p>
+        <div class="product-footer">
+          <div class="product-price">
+            <small>a partir de</small>
+            R$ 179,00
+          </div>
+          <a href="https://wa.me/5500000000000?text=Olá!%20Tenho%20interesse%20na%20Caixa%20Decorada%20Xadrez%20🌸" target="_blank" class="btn-whatsapp">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Pedir
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <img src="images/produto-3.jpg" alt="Interior do Álbum Rosa" />
+      </div>
+      <div class="product-body">
+        <h3>Páginas Internas Decoradas</h3>
+        <p>Cada página do álbum é decorada individualmente com papéis especiais, apliques e espaços para fotos 10x15.</p>
+        <div class="product-footer">
+          <div class="product-price">
+            <small>incluído nos álbuns</small>
+            ✦ Veja detalhes
+          </div>
+          <a href="https://wa.me/5500000000000?text=Olá!%20Quero%20saber%20mais%20sobre%20os%20álbuns%20artesanais%20💕" target="_blank" class="btn-whatsapp">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Pedir
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria">
+  <div class="section-header">
+    <div class="section-tag">Galeria</div>
+    <h2>Detalhes que encantam</h2>
+    <p>Clique nas fotos para ver de perto cada detalhe artesanal.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openLight('images/produto-5.jpg')">
+      <img src="images/produto-5.jpg" alt="Álbum Xadrez Rosa" />
+    </div>
+    <div class="gallery-item" onclick="openLight('images/produto-1.jpg')">
+      <img src="images/produto-1.jpg" alt="Pequeno Príncipe" />
+    </div>
+    <div class="gallery-item" onclick="openLight('images/produto-2.jpg')">
+      <img src="images/produto-2.jpg" alt="Detalhe capa rosa" />
+    </div>
+    <div class="gallery-item" onclick="openLight('images/produto-3.jpg')">
+      <img src="images/produto-3.jpg" alt="Páginas internas" />
+    </div>
+    <div class="gallery-item" onclick="openLight('images/produto-4.jpg')">
+      <img src="images/produto-4.jpg" alt="Caixa decorada" />
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos">
+  <div class="section-header">
+    <div class="section-tag">O que dizem</div>
+    <h2>Clientes apaixonadas</h2>
+    <p>Quem recebe, se apaixona. Veja o que nossas clientes dizem.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Comprei o álbum da ursinha para o chá de bebê da minha irmã e ela chorou de emoção. A qualidade é incrível, cada detalhe feito com tanto amor!"</blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">🌸</div>
+        <div>
+          <div class="author-name">Ana Carolina M.</div>
+          <div class="author-city">São Paulo, SP</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"O álbum do Pequeno Príncipe ficou lindo demais! Encomendei personalizado com o nome do meu filho e superou todas as expectativas. Super recomendo!"</blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">💛</div>
+        <div>
+          <div class="author-name">Fernanda S.</div>
+          <div class="author-city">Belo Horizonte, MG</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Atendimento maravilhoso e entrega muito bem embalada. O álbum xadrez rosa é simplesmente perfeito. Já encomendei o segundo para presentear!"</blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">🎀</div>
+        <div>
+          <div class="author-name">Juliana P.</div>
+          <div class="author-city">Curitiba, PR</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO / CTA -->
+<section id="contato">
+  <div class="section-tag">Fale conosco</div>
+  <h2>Vamos criar juntos?</h2>
+  <p>Entre em contato pelo WhatsApp para encomendas personalizadas, dúvidas sobre prazo ou qualquer outra informação.</p>
+  <a href="https://wa.me/5500000000000?text=Olá!%20Vi%20o%20site%20e%20gostaria%20de%20encomendar%20um%20álbum%20artesanal%20💕" target="_blank" class="cta-btn-big">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Chamar no WhatsApp
+  </a>
+  <div class="contact-info">
+    <div class="contact-item">
+      <span class="ci-icon">📱</span>
+      <span>WhatsApp</span>
+      <strong>(00) 00000-0000</strong>
+    </div>
+    <div class="contact-item">
+      <span class="ci-icon">📸</span>
+      <span>Instagram</span>
+      <strong>@ateliecomamor</strong>
+    </div>
+    <div class="contact-item">
+      <span class="ci-icon">⏱️</span>
+      <span>Prazo médio</span>
+      <strong>15 a 20 dias úteis</strong>
+    </div>
+    <div class="contact-item">
+      <span class="ci-icon">🚚</span>
+      <span>Envio</span>
+      <strong>Todo o Brasil</strong>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Ateliê com Amor · Feito à mão com carinho · <a href="#hero">Voltar ao topo ↑</a></p>
+</footer>
+
+<!-- WhatsApp FAB -->
+<a href="https://wa.me/5500000000000?text=Olá!%20Vi%20o%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20álbuns%20artesanais%20💕" target="_blank" class="wa-fab" title="Fale conosco no WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLight()">
+  <button class="lightbox-close" onclick="closeLight()">×</button>
+  <img id="lightbox-img" src="" alt="Foto ampliada" />
+</div>
+
+<script>
+  function openLight(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLight() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLight(); });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.product-card, .feature-card, .testimonial-card, .gallery-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(28px)';
+    el.style.transition = 'opacity .55s ease, transform .55s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
