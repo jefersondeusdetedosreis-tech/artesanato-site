@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Viver Histórias</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --rose:     #e8a4a8; --rose-lt:  #fbe8ea;
+      --cream:    #fdf6f0; --gold:     #c9a04a;
+      --gold-lt:  #f0e0b8; --brown:    #5a4a42;
+      --brown-lt: #8a7068; --white:    #ffffff;
+      --danger:   #d94040; --success:  #25d366;
+      --border:   #e5dad4;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Lato', sans-serif; background: var(--cream); color: var(--brown); min-height: 100vh; }
+
+    /* ── LOGIN ── */
+    #login-screen {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: radial-gradient(ellipse at 70% 30%, #fbe8ea 0%, transparent 50%), var(--cream);
+    }
+    .login-card {
+      background: var(--white); padding: 48px 40px; border-radius: 24px;
+      box-shadow: 0 8px 40px rgba(90,74,66,.12); width: 100%; max-width: 420px;
+    }
+    .brand { font-family: 'Playfair Display', serif; font-size: 1.7rem; color: var(--brown); text-align: center; margin-bottom: 4px; }
+    .brand span { color: var(--gold); }
+    .subtitle { text-align: center; color: var(--brown-lt); font-size: .88rem; margin-bottom: 32px; }
+
+    /* ── FORMS ── */
+    .form-group { margin-bottom: 18px; }
+    label { display: block; font-size: .78rem; font-weight: 700; color: var(--brown); margin-bottom: 6px; letter-spacing: .05em; text-transform: uppercase; }
+    input[type=text], input[type=password], input[type=number], textarea, select {
+      width: 100%; padding: 11px 15px; border: 1.5px solid var(--border); border-radius: 12px;
+      font-family: 'Lato', sans-serif; font-size: .95rem; color: var(--brown);
+      background: var(--cream); outline: none; transition: border-color .2s;
+    }
+    input:focus, textarea:focus, select:focus { border-color: var(--gold); }
+    textarea { resize: vertical; min-height: 75px; }
+    .hint { font-size: .74rem; color: var(--brown-lt); margin-top: 5px; line-height: 1.5; }
+    .hint a { color: var(--gold); }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 11px 22px; border: none; border-radius: 50px;
+      font-family: 'Lato', sans-serif; font-size: .9rem; font-weight: 700;
+      cursor: pointer; transition: transform .18s, box-shadow .18s, opacity .18s;
+      text-decoration: none; white-space: nowrap;
+    }
+    .btn:hover:not(:disabled) { transform: translateY(-1px); }
+    .btn:disabled { opacity: .45; cursor: not-allowed; }
+    .btn-full { width: 100%; justify-content: center; }
+    .btn-primary  { background: var(--gold);    color: var(--white); box-shadow: 0 4px 14px rgba(201,160,74,.3); }
+    .btn-primary:hover:not(:disabled)  { box-shadow: 0 6px 20px rgba(201,160,74,.45); }
+    .btn-rose     { background: var(--rose);    color: var(--white); box-shadow: 0 4px 14px rgba(232,164,168,.3); }
+    .btn-outline  { background: var(--rose-lt); color: var(--brown); }
+    .btn-ghost    { background: transparent;    color: var(--brown-lt); border: 1.5px solid var(--border); }
+    .btn-danger   { background: #ffe5e5;        color: var(--danger); }
+    .btn-publish  { background: var(--success); color: var(--white); box-shadow: 0 4px 14px rgba(37,211,102,.3); }
+    .btn-sm       { padding: 7px 14px; font-size: .78rem; }
+
+    /* ── HEADER ── */
+    #dashboard { display: none; }
+    .adm-header {
+      background: var(--white); border-bottom: 1px solid var(--gold-lt);
+      padding: 14px 5%; display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 50; box-shadow: 0 2px 12px rgba(90,74,66,.05);
+    }
+    .adm-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--brown); }
+    .adm-logo span { color: var(--gold); }
+    .adm-badge {
+      background: var(--gold-lt); color: var(--gold); font-size: .66rem; font-weight: 700;
+      padding: 2px 9px; border-radius: 50px; letter-spacing: .08em; text-transform: uppercase; margin-left: 8px;
+    }
+    .adm-header-right { display: flex; gap: 10px; align-items: center; }
+
+    /* ── CHANGES BAR ── */
+    #changes-bar {
+      display: none; background: #fff8e8; border-bottom: 1px solid var(--gold);
+      padding: 10px 5%; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    #changes-bar.show { display: flex; }
+    #changes-bar span { font-size: .88rem; color: var(--brown); }
+
+    /* ── MAIN ── */
+    .adm-main { padding: 36px 5%; max-width: 1060px; margin: 0 auto; }
+    .adm-toolbar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 24px; flex-wrap: wrap; gap: 12px;
+    }
+    .adm-toolbar h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--brown); }
+
+    /* ── SETTINGS CARD ── */
+    .settings-card {
+      background: var(--white); border-radius: 18px; padding: 24px;
+      box-shadow: 0 3px 14px rgba(90,74,66,.07); margin-bottom: 28px;
+    }
+    .settings-card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin-bottom: 16px; color: var(--brown); }
+    .settings-row { display: flex; gap: 12px; align-items: flex-end; }
+    .settings-row .form-group { flex: 1; margin-bottom: 0; }
+
+    /* ── PRODUCTS GRID ── */
+    .adm-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 18px;
+    }
+    .adm-card {
+      background: var(--white); border-radius: 18px; overflow: hidden;
+      box-shadow: 0 3px 14px rgba(90,74,66,.07);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .adm-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(90,74,66,.13); }
+    .adm-card-img { height: 170px; overflow: hidden; background: var(--cream); position: relative; }
+    .adm-card-img img { width: 100%; height: 100%; object-fit: cover; }
+    .adm-card-badge {
+      position: absolute; top: 8px; left: 8px;
+      background: var(--gold); color: var(--white); font-size: .62rem; font-weight: 700;
+      padding: 2px 9px; border-radius: 50px; text-transform: uppercase;
+    }
+    .adm-card-body { padding: 14px 16px; }
+    .adm-card-body h3 { font-family: 'Playfair Display', serif; font-size: .98rem; margin-bottom: 3px; }
+    .adm-card-price { font-size: .85rem; color: var(--gold); font-weight: 700; margin-bottom: 11px; }
+    .adm-card-actions { display: flex; gap: 7px; }
+
+    /* ── MODAL ── */
+    .overlay {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(30,18,12,.52); align-items: center; justify-content: center; padding: 16px;
+    }
+    .overlay.open { display: flex; }
+    .modal {
+      background: var(--white); border-radius: 22px; width: 100%; max-width: 560px;
+      max-height: 92vh; overflow-y: auto; padding: 32px 28px;
+      box-shadow: 0 20px 60px rgba(30,18,12,.25);
+    }
+    .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+    .modal-header h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; }
+    .modal-close { background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--brown-lt); line-height: 1; }
+    .modal-footer { display: flex; gap: 10px; justify-content: flex-end; margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--border); }
+
+    /* ── IMAGE UPLOAD ── */
+    .upload-box {
+      border: 2px dashed var(--border); border-radius: 14px;
+      padding: 22px; text-align: center; cursor: pointer;
+      transition: border-color .2s, background .2s; position: relative;
+    }
+    .upload-box:hover { border-color: var(--gold); background: #fffbf2; }
+    .upload-box.filled { padding: 6px; }
+    .upload-box.filled img { width: 100%; max-height: 190px; object-fit: cover; border-radius: 10px; }
+    .upload-icon { font-size: 2rem; }
+    .upload-label { font-size: .86rem; color: var(--brown-lt); margin-top: 6px; }
+    .upload-change {
+      position: absolute; bottom: 10px; right: 10px;
+      background: rgba(255,255,255,.92); padding: 4px 10px; border-radius: 50px;
+      font-size: .74rem; font-weight: 700; color: var(--brown);
+    }
+
+    /* ── LOADING ── */
+    .loading-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(253,246,240,.88); align-items: center; justify-content: center;
+      z-index: 300; flex-direction: column; gap: 14px;
+    }
+    .loading-overlay.show { display: flex; }
+    .spinner {
+      width: 34px; height: 34px; border: 3px solid var(--gold-lt);
+      border-top-color: var(--gold); border-radius: 50%; animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-text { font-size: .95rem; font-weight: 700; color: var(--brown); }
+
+    /* ── TOAST ── */
+    #toast {
+      position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%);
+      background: var(--brown); color: var(--white);
+      padding: 11px 24px; border-radius: 50px; font-size: .88rem; font-weight: 700;
+      opacity: 0; transition: opacity .28s; z-index: 999; pointer-events: none; white-space: nowrap;
+    }
+    #toast.show   { opacity: 1; }
+    #toast.ok     { background: var(--success); }
+    #toast.err    { background: var(--danger); }
+
+    /* ── EMPTY STATE ── */
+    .empty { grid-column: 1/-1; text-align: center; padding: 48px; color: var(--brown-lt); }
+    .empty span { font-size: 2.5rem; display: block; margin-bottom: 10px; }
+
+    @media (max-width: 580px) {
+      .adm-main { padding: 20px 4%; }
+      .login-card { padding: 30px 22px; }
+      .modal { padding: 22px 18px; }
+      .settings-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ LOGIN ══════════════════════════════════════════════════════════════ -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="brand">Viver <span>Histórias</span></div>
+    <div class="subtitle">Painel Administrativo</div>
+
+    <div class="form-group">
+      <label>GitHub Token</label>
+      <input type="password" id="inp-token" placeholder="ghp_..." />
+      <div class="hint">
+        Precisamos do token para salvar alterações no site.<br>
+        <a href="https://github.com/settings/tokens/new?description=Viver+Historias+Admin&scopes=repo" target="_blank">Criar token gratuito →</a>
+        (marque apenas <strong>repo</strong>)
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>PIN de segurança</label>
+      <input type="password" id="inp-pin" placeholder="Crie um PIN de 4 a 8 dígitos" maxlength="8" inputmode="numeric" />
+      <div class="hint">Na primeira vez, crie um PIN. Nas próximas, informe o mesmo PIN.</div>
+    </div>
+
+    <button class="btn btn-primary btn-full" onclick="doLogin()">Entrar no painel</button>
+  </div>
+</div>
+
+<!-- ══ LOADING ════════════════════════════════════════════════════════════ -->
+<div class="loading-overlay" id="loading">
+  <div class="spinner"></div>
+  <div class="loading-text" id="loading-text">Aguarde...</div>
+</div>
+
+<!-- ══ DASHBOARD ══════════════════════════════════════════════════════════ -->
+<div id="dashboard">
+
+  <!-- Header -->
+  <header class="adm-header">
+    <div style="display:flex;align-items:center">
+      <div class="adm-logo">Viver <span>Histórias</span></div>
+      <span class="adm-badge">Admin</span>
+    </div>
+    <div class="adm-header-right">
+      <a href="index.html" target="_blank" class="btn btn-ghost btn-sm">Ver site</a>
+      <button class="btn btn-ghost btn-sm" onclick="doLogout()">Sair</button>
+    </div>
+  </header>
+
+  <!-- Changes bar -->
+  <div id="changes-bar">
+    <span>Você tem alterações não publicadas.</span>
+    <button class="btn btn-publish btn-sm" onclick="publishChanges()">Publicar no site agora</button>
+  </div>
+
+  <!-- Main -->
+  <main class="adm-main">
+
+    <!-- Settings -->
+    <div class="settings-card">
+      <h3>Configurações</h3>
+      <div class="settings-row">
+        <div class="form-group">
+          <label>Número de WhatsApp</label>
+          <input type="text" id="cfg-wpp" placeholder="5511977780517" />
+          <div class="hint">Somente números, com código do país (55) e DDD</div>
+        </div>
+        <button class="btn btn-outline btn-sm" onclick="saveSettings()" style="margin-bottom:0;height:44px">Salvar</button>
+      </div>
+    </div>
+
+    <!-- Produtos -->
+    <div class="adm-toolbar">
+      <h2>Produtos</h2>
+      <button class="btn btn-primary" onclick="openModal(null)">+ Novo produto</button>
+    </div>
+
+    <div class="adm-grid" id="adm-grid">
+      <!-- cards rendered by JS -->
+    </div>
+
+  </main>
+</div>
+
+<!-- ══ PRODUCT MODAL ══════════════════════════════════════════════════════ -->
+<div class="overlay" id="modal" onclick="onOverlayClick(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modal-title">Novo produto</h3>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+
+    <!-- Image upload -->
+    <div class="form-group">
+      <label>Foto do produto</label>
+      <div class="upload-box" id="upload-box" onclick="document.getElementById('file-inp').click()">
+        <div id="upload-placeholder">
+          <div class="upload-icon">📷</div>
+          <div class="upload-label">Clique para escolher uma foto<br><small>JPG ou PNG, até 5 MB</small></div>
+        </div>
+        <img id="img-preview" style="display:none" alt="preview" />
+        <span class="upload-change" id="upload-change" style="display:none">Trocar foto</span>
+      </div>
+      <input type="file" id="file-inp" accept="image/*" style="display:none" onchange="onFileSelect(event)" />
+      <div class="hint" id="cur-img-hint"></div>
+    </div>
+
+    <div class="form-group">
+      <label>Nome do produto</label>
+      <input type="text" id="f-name" placeholder="Ex: Álbum Pequeno Príncipe" />
+    </div>
+
+    <div class="form-group">
+      <label>Descrição</label>
+      <textarea id="f-desc" placeholder="Descreva o produto..."></textarea>
+    </div>
+
+    <div class="row2">
+      <div class="form-group">
+        <label>Preço (R$)</label>
+        <input type="text" id="f-price" placeholder="189,00" />
+      </div>
+      <div class="form-group">
+        <label>Rótulo do preço</label>
+        <select id="f-plabel">
+          <option value="a partir de">a partir de</option>
+          <option value="incluído nos álbuns">incluído nos álbuns</option>
+          <option value="">sem rótulo</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Selo / Badge <small style="text-transform:none;font-weight:400">(opcional)</small></label>
+      <input type="text" id="f-badge" placeholder="Ex: Mais vendido, Novo, Exclusivo" />
+    </div>
+
+    <div class="form-group">
+      <label>Mensagem WhatsApp</label>
+      <input type="text" id="f-wpp" placeholder="Olá! Tenho interesse em..." />
+      <div class="hint">Texto pré-preenchido quando o cliente clicar em "Pedir"</div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveProduct()">Salvar produto</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TOAST ══════════════════════════════════════════════════════════════ -->
+<div id="toast"></div>
+
+<!-- ══ SCRIPT ═════════════════════════════════════════════════════════════ -->
+<script>
+const OWNER  = 'jefersondeusdetedosreis-tech';
+const REPO   = 'artesanato-site';
+const BRANCH = 'gh-pages';
+const FILE   = 'products.json';
+
+let token    = '';
+let data     = null;   // { whatsapp, products[] }
+let fileSha  = '';
+let editId   = null;
+let newImg   = null;   // { base64, filename }
+let changed  = false;
+
+// ── Auth ───────────────────────────────────────────────────────────────────
+
+function doLogin() {
+  const t   = (document.getElementById('inp-token').value || '').trim();
+  const pin = (document.getElementById('inp-pin').value  || '').trim();
+  if (!t) { toast('Informe o GitHub Token', 'err'); return; }
+  if (!pin) { toast('Crie um PIN de segurança', 'err'); return; }
+
+  const saved = localStorage.getItem('vh_pin');
+  if (saved) {
+    if (pin !== saved) { toast('PIN incorreto', 'err'); return; }
+  } else {
+    if (pin.length < 4) { toast('PIN deve ter no mínimo 4 dígitos', 'err'); return; }
+    localStorage.setItem('vh_pin', pin);
+  }
+
+  token = t;
+  localStorage.setItem('vh_tok', btoa(t));
+  load();
+}
+
+function doLogout() {
+  token = ''; data = null; changed = false;
+  document.getElementById('login-screen').style.display = '';
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('changes-bar').classList.remove('show');
+  document.getElementById('inp-token').value = '';
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('vh_tok');
+  if (saved) { try { token = atob(saved); load(); } catch(e) {} }
+});
+
+// ── GitHub API ────────────────────────────────────────────────────────────
+
+async function gh(path, opts = {}) {
+  const r = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}`, {
+    ...opts,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      'Content-Type': 'application/json',
+      ...(opts.headers || {})
+    }
+  });
+  if (!r.ok) { const e = await r.json().catch(()=>{}); throw new Error(e?.message || 'HTTP '+r.status); }
+  return r.json();
+}
+
+async function load() {
+  loading('Carregando produtos...');
+  try {
+    const f = await gh(`${FILE}?ref=${BRANCH}`);
+    fileSha = f.sha;
+    data    = JSON.parse(atob(f.content.replace(/\n/g,'')));
+    showDashboard();
+  } catch(e) {
+    localStorage.removeItem('vh_tok');
+    toast('Token inválido ou erro de conexão', 'err');
+  } finally { loaded(); }
+}
+
+async function publishChanges() {
+  if (!data) return;
+  loading('Publicando no site...');
+  try {
+    // Fetch fresh SHA before writing
+    const latest = await gh(`${FILE}?ref=${BRANCH}`);
+    fileSha = latest.sha;
+
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+    await gh(FILE, {
+      method: 'PUT',
+      body: JSON.stringify({ message: 'admin: atualiza produtos e configurações', content, sha: fileSha, branch: BRANCH })
+    });
+
+    changed = false;
+    document.getElementById('changes-bar').classList.remove('show');
+    toast('Publicado! Site atualizado em instantes.', 'ok');
+
+    const upd = await gh(`${FILE}?ref=${BRANCH}`);
+    fileSha = upd.sha;
+  } catch(e) { toast('Erro ao publicar: ' + e.message, 'err'); }
+  finally { loaded(); }
+}
+
+async function uploadImg(base64Full, filename) {
+  const content = base64Full.split(',')[1];
+  const path    = `images/${filename}`;
+  let sha;
+  try { const ex = await gh(`${path}?ref=${BRANCH}`); sha = ex.sha; } catch(e) {}
+  await gh(path, {
+    method: 'PUT',
+    body: JSON.stringify({ message: `admin: imagem ${filename}`, content, branch: BRANCH, ...(sha ? {sha} : {}) })
+  });
+  return `images/${filename}`;
+}
+
+// ── Render ────────────────────────────────────────────────────────────────
+
+function showDashboard() {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  document.getElementById('cfg-wpp').value = data.whatsapp || '';
+  renderGrid();
+}
+
+function renderGrid() {
+  const g = document.getElementById('adm-grid');
+  if (!data.products.length) {
+    g.innerHTML = '<div class="empty"><span>📦</span>Nenhum produto ainda.<br>Clique em "+ Novo produto" para começar.</div>';
+    return;
+  }
+  const base = `https://${OWNER}.github.io/${REPO}/`;
+  g.innerHTML = data.products.map(p => {
+    const imgSrc = p.image
+      ? (p.image.startsWith('http') ? p.image : base + p.image)
+      : '';
+    const priceStr = p.price ? 'R$ ' + p.price : (p.priceLabel || '—');
+    return `
+    <div class="adm-card">
+      <div class="adm-card-img">
+        ${imgSrc ? `<img src="${esc(imgSrc)}" onerror="this.style.display='none'" />` : '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--brown-lt);font-size:.85rem">sem foto</div>'}
+        ${p.badge ? `<div class="adm-card-badge">${esc(p.badge)}</div>` : ''}
+      </div>
+      <div class="adm-card-body">
+        <h3>${esc(p.name)}</h3>
+        <div class="adm-card-price">${esc(priceStr)}</div>
+        <div class="adm-card-actions">
+          <button class="btn btn-outline btn-sm" onclick="openModal('${p.id}')">Editar</button>
+          <button class="btn btn-danger btn-sm" onclick="del('${p.id}')">Excluir</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── Settings ─────────────────────────────────────────────────────────────
+
+function saveSettings() {
+  const wpp = document.getElementById('cfg-wpp').value.trim().replace(/\D/g,'');
+  if (!wpp) { toast('Informe o número do WhatsApp', 'err'); return; }
+  data.whatsapp = wpp;
+  markChanged();
+  toast('WhatsApp salvo. Clique em "Publicar" para atualizar o site.', 'ok');
+}
+
+// ── Modal ─────────────────────────────────────────────────────────────────
+
+function openModal(id) {
+  editId = id; newImg = null;
+  document.getElementById('modal-title').textContent = id ? 'Editar produto' : 'Novo produto';
+  document.getElementById('upload-box').classList.remove('filled');
+  document.getElementById('upload-placeholder').style.display = '';
+  document.getElementById('img-preview').style.display = 'none';
+  document.getElementById('upload-change').style.display = 'none';
+  document.getElementById('cur-img-hint').textContent = '';
+  document.getElementById('file-inp').value = '';
+
+  if (id) {
+    const p = data.products.find(x => x.id === id);
+    if (p) {
+      document.getElementById('f-name').value   = p.name || '';
+      document.getElementById('f-desc').value   = p.description || '';
+      document.getElementById('f-price').value  = p.price || '';
+      document.getElementById('f-plabel').value = p.priceLabel || 'a partir de';
+      document.getElementById('f-badge').value  = p.badge || '';
+      document.getElementById('f-wpp').value    = p.whatsappText || '';
+      if (p.image) document.getElementById('cur-img-hint').textContent = 'Foto atual: ' + p.image;
+    }
+  } else {
+    ['f-name','f-desc','f-price','f-badge','f-wpp'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('f-plabel').value = 'a partir de';
+  }
+  document.getElementById('modal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  newImg = null;
+  document.getElementById('file-inp').value = '';
+}
+
+function onOverlayClick(e) { if (e.target === document.getElementById('modal')) closeModal(); }
+
+function onFileSelect(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  if (file.size > 5242880) { toast('Foto muito grande (máx 5 MB)', 'err'); return; }
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const b64 = ev.target.result;
+    const fname = Date.now() + '_' + file.name.replace(/\s+/g,'_');
+    newImg = { base64: b64, filename: fname };
+    const prev = document.getElementById('img-preview');
+    prev.src = b64; prev.style.display = 'block';
+    document.getElementById('upload-placeholder').style.display = 'none';
+    document.getElementById('upload-box').classList.add('filled');
+    document.getElementById('upload-change').style.display = '';
+    document.getElementById('cur-img-hint').textContent = 'Nova foto selecionada';
+  };
+  reader.readAsDataURL(file);
+}
+
+async function saveProduct() {
+  const name  = document.getElementById('f-name').value.trim();
+  const desc  = document.getElementById('f-desc').value.trim();
+  const price = document.getElementById('f-price').value.trim();
+  const pl    = document.getElementById('f-plabel').value;
+  const badge = document.getElementById('f-badge').value.trim();
+  const wpp   = document.getElementById('f-wpp').value.trim();
+  if (!name) { toast('Informe o nome do produto', 'err'); return; }
+
+  loading('Salvando produto...');
+  try {
+    let image = editId ? (data.products.find(p=>p.id===editId)||{}).image || '' : '';
+
+    if (newImg) {
+      loadingTxt('Enviando foto...');
+      image = await uploadImg(newImg.base64, newImg.filename);
+    }
+
+    if (editId) {
+      const idx = data.products.findIndex(p => p.id === editId);
+      if (idx !== -1) data.products[idx] = { ...data.products[idx], name, description: desc, price, priceLabel: pl, badge, whatsappText: wpp, image };
+    } else {
+      data.products.push({ id: 'prod-' + Date.now(), name, description: desc, price, priceLabel: pl, badge, whatsappText: wpp, image });
+    }
+
+    markChanged();
+    closeModal();
+    renderGrid();
+    toast(editId ? 'Produto atualizado!' : 'Produto adicionado!', 'ok');
+  } catch(e) { toast('Erro: ' + e.message, 'err'); }
+  finally { loaded(); }
+}
+
+function del(id) {
+  if (!confirm('Excluir este produto?')) return;
+  data.products = data.products.filter(p => p.id !== id);
+  markChanged();
+  renderGrid();
+  toast('Produto removido.', 'ok');
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────
+
+function markChanged() {
+  changed = true;
+  document.getElementById('changes-bar').classList.add('show');
+}
+
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+let toastT;
+function toast(msg, type) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'show ' + (type || '');
+  clearTimeout(toastT);
+  toastT = setTimeout(() => el.className = '', 3500);
+}
+
+function loading(txt) {
+  document.getElementById('loading-text').textContent = txt || 'Aguarde...';
+  document.getElementById('loading').classList.add('show');
+}
+function loadingTxt(t) { document.getElementById('loading-text').textContent = t; }
+function loaded() { document.getElementById('loading').classList.remove('show'); }
+</script>
+</body>
+</html>
