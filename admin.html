@@ -205,19 +205,24 @@
     <div class="subtitle">Painel Administrativo</div>
 
     <div class="form-group">
-      <label>GitHub Token</label>
-      <input type="password" id="inp-token" placeholder="ghp_..." />
-      <div class="hint">
-        Precisamos do token para salvar alterações no site.<br>
-        <a href="https://github.com/settings/tokens/new?description=Viver+Historias+Admin&scopes=repo" target="_blank">Criar token gratuito →</a>
-        (marque apenas <strong>repo</strong>)
-      </div>
+      <label>Telefone</label>
+      <input type="text" id="inp-phone" placeholder="11 97778-0517" inputmode="tel" />
     </div>
 
     <div class="form-group">
-      <label>PIN de segurança</label>
-      <input type="password" id="inp-pin" placeholder="Crie um PIN de 4 a 8 dígitos" maxlength="8" inputmode="numeric" />
-      <div class="hint">Na primeira vez, crie um PIN. Nas próximas, informe o mesmo PIN.</div>
+      <label>Senha</label>
+      <input type="password" id="inp-senha" placeholder="••••" maxlength="4" inputmode="numeric" />
+    </div>
+
+    <!-- Exibido só na primeira vez, quando o token ainda não está salvo -->
+    <div class="form-group" id="token-group" style="display:none">
+      <label>GitHub Token <small style="text-transform:none;font-weight:400">(só na primeira vez)</small></label>
+      <input type="password" id="inp-token" placeholder="ghp_..." />
+      <div class="hint">
+        Necessário para publicar alterações no site.<br>
+        <a href="https://github.com/settings/tokens/new?description=Viver+Historias+Admin&scopes=repo" target="_blank">Criar token gratuito →</a>
+        (marque apenas <strong>repo</strong>)
+      </div>
     </div>
 
     <button class="btn btn-primary btn-full" onclick="doLogin()">Entrar no painel</button>
@@ -365,23 +370,38 @@ let changed  = false;
 
 // ── Auth ───────────────────────────────────────────────────────────────────
 
-function doLogin() {
-  const t   = (document.getElementById('inp-token').value || '').trim();
-  const pin = (document.getElementById('inp-pin').value  || '').trim();
-  if (!t) { toast('Informe o GitHub Token', 'err'); return; }
-  if (!pin) { toast('Crie um PIN de segurança', 'err'); return; }
+const PHONE_DIGITS = '5511977780517';   // telefone oficial (só dígitos)
+const SENHA_DIGITS = PHONE_DIGITS.slice(-4); // últimos 4: "0517"
 
-  const saved = localStorage.getItem('vh_pin');
-  if (saved) {
-    if (pin !== saved) { toast('PIN incorreto', 'err'); return; }
-  } else {
-    if (pin.length < 4) { toast('PIN deve ter no mínimo 4 dígitos', 'err'); return; }
-    localStorage.setItem('vh_pin', pin);
+function normalizePhone(s) { return s.replace(/\D/g, ''); }
+
+function doLogin() {
+  const phone = normalizePhone(document.getElementById('inp-phone').value || '');
+  const senha = (document.getElementById('inp-senha').value || '').trim();
+
+  // aceita o número com ou sem código do país
+  const phoneOk = phone === PHONE_DIGITS || phone === PHONE_DIGITS.slice(2);
+  if (!phoneOk) { toast('Telefone incorreto', 'err'); return; }
+  if (senha !== SENHA_DIGITS) { toast('Senha incorreta', 'err'); return; }
+
+  const savedTok = localStorage.getItem('vh_tok');
+  if (savedTok) {
+    try { token = atob(savedTok); load(); }
+    catch(e) { localStorage.removeItem('vh_tok'); showTokenField(); }
+    return;
   }
 
+  // primeira vez — precisa do token
+  const t = (document.getElementById('inp-token').value || '').trim();
+  if (!t) { showTokenField(); toast('Informe o GitHub Token para continuar', 'err'); return; }
   token = t;
   localStorage.setItem('vh_tok', btoa(t));
   load();
+}
+
+function showTokenField() {
+  document.getElementById('token-group').style.display = '';
+  document.getElementById('inp-token').focus();
 }
 
 function doLogout() {
@@ -389,12 +409,15 @@ function doLogout() {
   document.getElementById('login-screen').style.display = '';
   document.getElementById('dashboard').style.display = 'none';
   document.getElementById('changes-bar').classList.remove('show');
-  document.getElementById('inp-token').value = '';
+  document.getElementById('inp-phone').value = '';
+  document.getElementById('inp-senha').value = '';
+  document.getElementById('token-group').style.display = 'none';
 }
 
 window.addEventListener('DOMContentLoaded', () => {
   const saved = localStorage.getItem('vh_tok');
-  if (saved) { try { token = atob(saved); load(); } catch(e) {} }
+  if (saved) { try { token = atob(saved); load(); } catch(e) { localStorage.removeItem('vh_tok'); } }
+  // sem token salvo: login normal, campo de token aparece só após validar credenciais
 });
 
 // ── GitHub API ────────────────────────────────────────────────────────────
