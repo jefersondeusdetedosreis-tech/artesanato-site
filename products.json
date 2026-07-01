@@ -3,53 +3,53 @@
   "products": [
     {
       "id": "prod-1",
-      "name": "Álbum Pequeno Príncipe",
-      "description": "Álbum espiral temático com capa cartonada, apliques 3D e detalhes dourados. Perfeito para chá de bebê ou maternidade.",
+      "name": "Ãlbum Pequeno PrÃ­ncipe",
+      "description": "Ãlbum espiral temÃ¡tico com capa cartonada, apliques 3D e detalhes dourados. Perfeito para chÃ¡ de bebÃª ou maternidade.",
       "price": "189,00",
       "priceLabel": "a partir de",
       "image": "images/produto-1.png",
       "badge": "Exclusivo",
-      "whatsappText": "Olá! Tenho interesse no Álbum Pequeno Príncipe 🌟"
+      "whatsappText": "OlÃ¡! Tenho interesse no Ãlbum Pequeno PrÃ­ncipe ð"
     },
     {
       "id": "prod-2",
-      "name": "Álbum Rosa com Ursinha",
-      "description": "Álbum com capa de tecido rosa, bordinha de pompom, apliques florais e ursinha delicada. Ideal para bebê menina.",
+      "name": "Ãlbum Rosa com Ursinha",
+      "description": "Ãlbum com capa de tecido rosa, bordinha de pompom, apliques florais e ursinha delicada. Ideal para bebÃª menina.",
       "price": "219,00",
       "priceLabel": "a partir de",
       "image": "images/produto-2.png",
       "badge": "Mais vendido",
-      "whatsappText": "Olá! Tenho interesse no Álbum Rosa com Ursinha 🐻🌸"
+      "whatsappText": "OlÃ¡! Tenho interesse no Ãlbum Rosa com Ursinha ð»ð¸"
     },
     {
       "id": "prod-3",
-      "name": "Álbum Xadrez Rosa",
-      "description": "Capa em papel xadrez rose com ursinha flores e borboleta 3D, detalhes pérola e laço. Um presente que encanta.",
+      "name": "Ãlbum Xadrez Rosa",
+      "description": "Capa em papel xadrez rose com ursinha flores e borboleta 3D, detalhes pÃ©rola e laÃ§o. Um presente que encanta.",
       "price": "249,00",
       "priceLabel": "a partir de",
       "image": "images/produto-5.png",
       "badge": "",
-      "whatsappText": "Olá! Tenho interesse no Álbum Xadrez Rosa 🎀"
+      "whatsappText": "OlÃ¡! Tenho interesse no Ãlbum Xadrez Rosa ð"
     },
     {
       "id": "prod-4",
-      "name": "Caixa Decorada Xadrez",
-      "description": "Caixa artesanal decorada com ursinha, peônias e flores delicadas. Para guardar memórias ou oferecer como presente.",
-      "price": "179,00",
+      "name": "Álbum Decorada Xadrez",
+      "description": "Caixa artesanal decorada com ursinha, peÃ´nias e flores delicadas. Para guardar memÃ³rias ou oferecer como presente.",
+      "price": "287,00",
       "priceLabel": "a partir de",
       "image": "images/produto-4.png",
       "badge": "Novo",
-      "whatsappText": "Olá! Tenho interesse na Caixa Decorada Xadrez 🌸"
+      "whatsappText": "OlÃ¡! Tenho interesse na Caixa Decorada Xadrez ð¸"
     },
     {
       "id": "prod-5",
-      "name": "Páginas Internas Decoradas",
-      "description": "Cada página do álbum é decorada individualmente com papéis especiais, apliques e espaços para fotos 10x15.",
+      "name": "PÃ¡ginas Internas Decoradas",
+      "description": "Cada pÃ¡gina do Ã¡lbum Ã© decorada individualmente com papÃ©is especiais, apliques e espaÃ§os para fotos 10x15.",
       "price": "",
-      "priceLabel": "incluído nos álbuns",
+      "priceLabel": "incluÃ­do nos Ã¡lbuns",
       "image": "images/produto-3.png",
       "badge": "",
-      "whatsappText": "Olá! Quero saber mais sobre os álbuns artesanais 💕"
+      "whatsappText": "OlÃ¡! Quero saber mais sobre os Ã¡lbuns artesanais ð"
     }
   ]
 }
