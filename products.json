@@ -33,10 +33,10 @@
     },
     {
       "id": "prod-4",
-      "name": "Álbum Decorada Xadrez",
+      "name": "Album Decorada Xadrez",
       "description": "Caixa artesanal decorada com ursinha, peÃ´nias e flores delicadas. Para guardar memÃ³rias ou oferecer como presente.",
       "price": "287,00",
-      "priceLabel": "a partir de",
+      "priceLabel": "incluído nos álbuns",
       "image": "images/produto-4.png",
       "badge": "Novo",
       "whatsappText": "OlÃ¡! Tenho interesse na Caixa Decorada Xadrez ð¸"
