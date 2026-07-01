@@ -3,53 +3,53 @@
   "products": [
     {
       "id": "prod-1",
-      "name": "ÃÂlbum Pequeno PrÃÂ­ncipe",
-      "description": "ÃÂlbum espiral temÃÂ¡tico com capa cartonada, apliques 3D e detalhes dourados. Perfeito para chÃÂ¡ de bebÃÂª ou maternidade.",
+      "name": "ÃÂÃÂlbum Pequeno PrÃÂÃÂ­ncipe",
+      "description": "ÃÂÃÂlbum espiral temÃÂÃÂ¡tico com capa cartonada, apliques 3D e detalhes dourados. Perfeito para chÃÂÃÂ¡ de bebÃÂÃÂª ou maternidade.",
       "price": "250,00",
-      "priceLabel": "incluÃ­do nos Ã¡lbuns",
+      "priceLabel": "incluÃÂ­do nos ÃÂ¡lbuns",
       "image": "images/produto-1.png",
       "badge": "Exclusivo",
-      "whatsappText": "OlÃÂ¡! Tenho interesse no ÃÂlbum Pequeno PrÃÂ­ncipe Ã°ÂÂÂ"
+      "whatsappText": "OlÃÂÃÂ¡! Tenho interesse no ÃÂÃÂlbum Pequeno PrÃÂÃÂ­ncipe ÃÂ°ÃÂÃÂÃÂ"
     },
     {
       "id": "prod-2",
-      "name": "ÃÂlbum Rosa com Ursinha",
-      "description": "ÃÂlbum com capa de tecido rosa, bordinha de pompom, apliques florais e ursinha delicada. Ideal para bebÃÂª menina.",
+      "name": "ÃÂÃÂlbum Rosa com Ursinha",
+      "description": "ÃÂÃÂlbum com capa de tecido rosa, bordinha de pompom, apliques florais e ursinha delicada. Ideal para bebÃÂÃÂª menina.",
       "price": "219,00",
       "priceLabel": "a partir de",
       "image": "images/produto-2.png",
       "badge": "Mais vendido",
-      "whatsappText": "OlÃÂ¡! Tenho interesse no ÃÂlbum Rosa com Ursinha Ã°ÂÂÂ»Ã°ÂÂÂ¸"
+      "whatsappText": "OlÃÂÃÂ¡! Tenho interesse no ÃÂÃÂlbum Rosa com Ursinha ÃÂ°ÃÂÃÂÃÂ»ÃÂ°ÃÂÃÂÃÂ¸"
     },
     {
       "id": "prod-3",
-      "name": "ÃÂlbum Nina",
+      "name": "ÃÂÃÂlbum Nina",
       "description": "Capa em papel xadrez rose com a ursinha Nina flores e borboleta projetadas em relevo. Um presente que encanta.\n\nMedindo 18cm X 21cm, acabamento laminado fosco.",
       "price": "280,00",
       "priceLabel": "a partir de",
       "image": "images/produto-5.png",
       "badge": "Mais Vendido",
-      "whatsappText": "OlÃÂ¡! Tenho interesse no ÃÂlbum Nina Ã°ÂÂÂ"
+      "whatsappText": "OlÃÂÃÂ¡! Tenho interesse no ÃÂÃÂlbum Nina ÃÂ°ÃÂÃÂÃÂ"
     },
     {
       "id": "prod-4",
       "name": "Album Decorada Xadrez",
-      "description": "Caixa artesanal decorada com ursinha, peÃÂ´nias e flores delicadas. Para guardar memÃÂ³rias ou oferecer como presente.",
+      "description": "Caixa artesanal decorada com ursinha, peÃÂÃÂ´nias e flores delicadas. Para guardar memÃÂÃÂ³rias ou oferecer como presente.",
       "price": "287,00",
-      "priceLabel": "incluÃ­do nos Ã¡lbuns",
+      "priceLabel": "incluÃÂ­do nos ÃÂ¡lbuns",
       "image": "images/produto-4.png",
       "badge": "Novo",
-      "whatsappText": "OlÃÂ¡! Tenho interesse na Caixa Decorada Xadrez Ã°ÂÂÂ¸"
+      "whatsappText": "OlÃÂÃÂ¡! Tenho interesse na Caixa Decorada Xadrez ÃÂ°ÃÂÃÂÃÂ¸"
     },
     {
       "id": "prod-5",
-      "name": "PÃÂ¡ginas Internas Decoradas",
-      "description": "Cada pÃÂ¡gina do ÃÂ¡lbum ÃÂ© decorada individualmente com papÃÂ©is especiais, apliques e espaÃÂ§os para fotos 10x15.",
+      "name": "PÃÂÃÂ¡ginas Internas Decoradas",
+      "description": "Cada pÃÂÃÂ¡gina do ÃÂÃÂ¡lbum ÃÂÃÂ© decorada individualmente com papÃÂÃÂ©is especiais, apliques e espaÃÂÃÂ§os para fotos 10x15.",
       "price": "",
-      "priceLabel": "incluÃÂ­do nos ÃÂ¡lbuns",
+      "priceLabel": "incluÃÂÃÂ­do nos ÃÂÃÂ¡lbuns",
       "image": "images/produto-3.png",
       "badge": "",
-      "whatsappText": "OlÃÂ¡! Quero saber mais sobre os ÃÂ¡lbuns artesanais Ã°ÂÂÂ"
+      "whatsappText": "OlÃÂÃÂ¡! Quero saber mais sobre os ÃÂÃÂ¡lbuns artesanais ÃÂ°ÃÂÃÂÃÂ"
     }
   ]
 }
