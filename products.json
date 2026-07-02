@@ -12,16 +12,6 @@
       "whatsappText": "OlÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡! Tenho interesse no ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂlbum Pequeno PrÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­ncipe ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ"
     },
     {
-      "id": "prod-2",
-      "name": "ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂlbum Rosa com Ursinha",
-      "description": "ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂlbum com capa de tecido rosa, bordinha de pompom, apliques florais e ursinha delicada. Ideal para bebÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂª menina.",
-      "price": "219,00",
-      "priceLabel": "a partir de",
-      "image": "images/produto-2.png",
-      "badge": "Mais vendido",
-      "whatsappText": "OlÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡! Tenho interesse no ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂlbum Rosa com Ursinha ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ»ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¸"
-    },
-    {
       "id": "prod-3",
       "name": "ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂlbum Nina",
       "description": "Capa em papel xadrez rose com a ursinha Nina flores e borboleta projetadas em relevo. Um presente que encanta.\n\nMedindo 18cm X 21cm, acabamento laminado fosco.",
@@ -50,6 +40,16 @@
       "image": "images/1783011397585_1000150465.jpg",
       "badge": "Novo",
       "whatsappText": "OlÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡! Quero saber mais sobre o Ãlbum Melissa!"
+    },
+    {
+      "id": "prod-1783016605421",
+      "name": "Álbum Hexa",
+      "description": "Capa cartonada que representa a paixão pelo futebol, bola na rede chuteira em relevo e detalhes que remetem à energia das grandes competições, estilo álbum de figurinhas  para 30 fotos 7,5cm x 10cm.\nMedindo 20cmx20cm.",
+      "price": "",
+      "priceLabel": "a partir de",
+      "badge": "Lançamento",
+      "whatsappText": "Olá! Tenho interesse em saber mais sobre o Álbum Hexa!",
+      "image": "images/1783015630764_1000150483.jpg"
     }
   ]
 }
