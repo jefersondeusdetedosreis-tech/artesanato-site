@@ -3,52 +3,52 @@
   "products": [
     {
       "id": "prod-1",
-      "name": "ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂlbum Pequeno PrÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­ncipe",
-      "description": "ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂlbum espiral temÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡tico com capa cartonada, apliques 3D e detalhes dourados. Perfeito para chÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡ de bebÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂª ou maternidade.",
+      "name": "Álbum pequeno Príncipe",
+      "description": "ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂlbum espiral temÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡tico com capa cartonada, apliques 3D e detalhes dourados. Perfeito para chÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡ de bebÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂª ou maternidade.",
       "price": "250,00",
-      "priceLabel": "incluÃÂÃÂÃÂÃÂ­do nos ÃÂÃÂÃÂÃÂ¡lbuns",
+      "priceLabel": "",
       "image": "images/produto-1.png",
       "badge": "Exclusivo",
-      "whatsappText": "OlÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡! Tenho interesse no ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂlbum Pequeno PrÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­ncipe ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ"
+      "whatsappText": "OlÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡! Tenho interesse no ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂlbum Pequeno PrÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­ncipe ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ"
     },
     {
       "id": "prod-3",
-      "name": "ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂlbum Nina",
+      "name": "Álbum Ursa Nina",
       "description": "Capa em papel xadrez rose com a ursinha Nina flores e borboleta projetadas em relevo. Um presente que encanta.\n\nMedindo 18cm X 21cm, acabamento laminado fosco.",
       "price": "280,00",
       "priceLabel": "a partir de",
       "image": "images/1783015494828_1000150524.jpg",
       "badge": "Mais Vendido",
-      "whatsappText": "OlÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡! Tenho interesse no ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂlbum Nina ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ"
+      "whatsappText": "OlÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡! Tenho interesse no ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂlbum Nina ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ"
     },
     {
       "id": "prod-4",
       "name": "Album Decorada Xadrez",
-      "description": "Caixa artesanal decorada com ursinha, peÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ´nias e flores delicadas. Para guardar memÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³rias ou oferecer como presente.",
+      "description": "Caixa artesanal decorada com ursinha, peÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ´nias e flores delicadas. Para guardar memÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³rias ou oferecer como presente.",
       "price": "287,00",
-      "priceLabel": "incluÃÂÃÂÃÂÃÂ­do nos ÃÂÃÂÃÂÃÂ¡lbuns",
+      "priceLabel": "incluÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­do nos ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡lbuns",
       "image": "images/produto-4.png",
       "badge": "Novo",
-      "whatsappText": "OlÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡! Tenho interesse na Caixa Decorada Xadrez ÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¸"
+      "whatsappText": "OlÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡! Tenho interesse na Caixa Decorada Xadrez ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ°ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¸"
     },
     {
       "id": "prod-5",
-      "name": "Ãlbum Melissa",
-      "description": "Capa dupla com amarraÃ§Ã£o em fita e janelinha brilhante rose gold, shaker de lantejoulas, perfeito para presentear.\n\nCapacidade para 12 fotos.\nMedindo 20cm X 20cm.",
+      "name": "Álbum Melissa",
+      "description": "Capa dupla com amarraÃÂ§ÃÂ£o em fita e janelinha brilhante rose gold, shaker de lantejoulas, perfeito para presentear.\n\nCapacidade para 12 fotos.\nMedindo 20cm X 20cm.",
       "price": "320,00",
-      "priceLabel": "",
+      "priceLabel": "a partir de",
       "image": "images/1783011397585_1000150465.jpg",
       "badge": "Novo",
-      "whatsappText": "OlÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡! Quero saber mais sobre o Ãlbum Melissa!"
+      "whatsappText": "OlÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡! Quero saber mais sobre o ÃÂlbum Melissa!"
     },
     {
       "id": "prod-1783016605421",
       "name": "Álbum Hexa",
-      "description": "Capa cartonada que representa a paixão pelo futebol, bola na rede chuteira em relevo e detalhes que remetem à energia das grandes competições, estilo álbum de figurinhas  para 30 fotos 7,5cm x 10cm.\nMedindo 20cmx20cm.",
+      "description": "Capa cartonada que representa a paixÃ£o pelo futebol, bola na rede chuteira em relevo e detalhes que remetem Ã  energia das grandes competiÃ§Ãµes, estilo Ã¡lbum de figurinhas  para 30 fotos 7,5cm x 10cm.\nMedindo 20cmx20cm.",
       "price": "190,00",
       "priceLabel": "a partir de",
-      "badge": "Lançamento",
-      "whatsappText": "Olá! Tenho interesse em saber mais sobre o Álbum Hexa!",
+      "badge": "LanÃ§amento",
+      "whatsappText": "OlÃ¡! Tenho interesse em saber mais sobre o Ãlbum Hexa!",
       "image": "images/1783015630764_1000150483.jpg"
     }
   ]
